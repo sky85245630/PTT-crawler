@@ -18,9 +18,9 @@ def Gossiping(url):
     # 匯入html5lib
     soup = BeautifulSoup(resp.text, 'html5lib')
     # 找到他上一頁的元素在div裡面的btn-group btn-group-paging class
-    paging = soup.find('div','btn-group btn-group-paging')
     # 再找到div裡面的a元素（總共有四個 要拿到第二個元素）在取得href裡面的文字
-    paging.find_all('a')[1]['href']
+    paging = soup.find('div','btn-group btn-group-paging').find_all('a')[1]['href']
+    
 
     #裡面放文章
     articles=[]
@@ -36,3 +36,7 @@ def Gossiping(url):
         date = rent.find('div','meta').find('div','date').text.strip()
         # 把標題推文數時間組合起來
         articles = '%s %s:%s' % (date,count,title)
+
+
+
+# Gossiping('https://www.ptt.cc/bbs/Gossiping/index.html')
