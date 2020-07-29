@@ -28,6 +28,7 @@ def Gossiping(url):
     #找到所有為r-ent 的 div元素
     rents = soup.find_all('div','r-ent')
     for rent in rents:
+        # strip去掉空白字元
         # 標題
         title = rent.find('div','title').text.strip()
         # 推文數
@@ -35,7 +36,20 @@ def Gossiping(url):
         # 時間
         date = rent.find('div','meta').find('div','date').text.strip()
         # 把標題推文數時間組合起來
-        articles = '%s %s:%s' % (date,count,title)
+        article = '%s %s:%s' % (date,count,title)
+
+        try:
+            # 如果時間跟今天一樣，然後推文數也超過十
+            if today == date and int(count)>10:
+                # 把article加到articles
+                articles.append(article)
+    
+        # 排除錯誤 如果推文數太多會變成‘爆’（把這個錯誤也拿出來寫）
+        except:
+            if today ==date and count =="爆":
+                articles.append(article)
+
+
 
 
 
