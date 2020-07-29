@@ -17,6 +17,10 @@ def Gossiping(url):
         return
     # 匯入html5lib
     soup = BeautifulSoup(resp.text, 'html5lib')
+    # 找到他上一頁的元素在div裡面的btn-group btn-group-paging class
+    paging = soup.find('div','btn-group btn-group-paging')
+    # 再找到div裡面的a元素（總共有四個 要拿到第二個元素）在取得href裡面的文字
+    paging.find_all('a')[1]['href']
 
 
 
