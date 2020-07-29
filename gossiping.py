@@ -34,4 +34,5 @@ def Gossiping(url):
         count = rent.find('div','nrec').text.strip()
         # 時間
         date = rent.find('div','meta').find('div','date').text.strip()
-
+        # 把標題推文數時間組合起來
+        articles = '%s %s:%s' % (date,count,title)
