@@ -22,6 +22,16 @@ def Gossiping(url):
     # 再找到div裡面的a元素（總共有四個 要拿到第二個元素）在取得href裡面的文字
     paging.find_all('a')[1]['href']
 
+    #裡面放文章
+    articles=[]
 
-
+    #找到所有為r-ent 的 div元素
+    rents = soup.find_all('div','r-ent')
+    for rent in rents:
+        # 標題
+        title = rent.find('div','title').text.strip()
+        # 推文數
+        count = rent.find('div','nrec').text.strip()
+        # 時間
+        date = rent.find('div','meta').find('div','date').text.strip()
 
