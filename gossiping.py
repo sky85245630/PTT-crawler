@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-# import html5lib
+import html5lib
 import time
 
 
@@ -15,6 +15,8 @@ def Gossiping(url):
     if resp.status_code != 200:
         print('URL發生錯誤' + url)
         return
+    # 匯入html5lib
+    soup = BeautifulSoup(resp.text, 'html5lib')
 
 
 
