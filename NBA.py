@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import html5lib
+# import html5lib
 import time
 
 
@@ -19,7 +19,8 @@ def Gossiping(url):
     soup = BeautifulSoup(resp.text, 'html5lib')
     # 找到他上一頁的元素在div裡面的btn-group btn-group-paging class
     # 再找到div裡面的a元素（總共有四個 要拿到第二個元素）在取得href裡面的文字
-    paging = soup.find('div','btn-group btn-group-paging').find_all('a')[1]['href']
+    paging = soup.find('div', 'btn-group btn-group-paging').find_all('a')[1]['href']
+    
     
 
     #裡面放文章
@@ -49,8 +50,12 @@ def Gossiping(url):
             if today ==date and count =="爆":
                 articles.append(article)
 
+    # 如果articles不等於零
+    if len(articles) != 0:
+        for article in articles:
+            print(article)
+        Gossiping('https://www.ptt.cc'+paging)
+    else:
+        return
 
-
-
-
-# Gossiping('https://www.ptt.cc/bbs/Gossiping/index.html')
+Gossiping('https://www.ptt.cc/bbs/NBA/index.html')
